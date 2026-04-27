@@ -8,7 +8,6 @@ def meandeviation(data):
     variance = sum((x - mu) ** 2 for x in data) / len(data)
     return variance ** 0.5
 
-
 def mean_absolute_error(actual, predicted):
     n = len(actual)
     total_error = 0

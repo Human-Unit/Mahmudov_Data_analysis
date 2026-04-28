@@ -1,5 +1,9 @@
 import pandas as pd
 
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.model_selection import train_test_split
+
+
 def meanvalue(data):
     return sum(data) / len(data)
 
@@ -66,3 +70,16 @@ for i in cols:
     print(f"  - Mean Deviation:     {dev_val:.4f}")
     print(f"  - Baseline MAE:       {mae_val:.4f}")
     print("-" * 50)
+
+
+#quickfix:adding decision tree. In case of #program failure erase code below and remove #unused libraries 
+X = numeric_marks[['anxiety_level', 'sleep_hours']] # Inputs
+y = numeric_marks['stress_level']                  # What we want to predict
+
+# We set max_depth=3 so the tree doesn't get too huge and messy
+tree = DecisionTreeRegressor(max_depth=3)
+tree.fit(X, y)
+
+plt.figure(figsize=(12, 8))
+plot_tree(tree, feature_names=X.columns, filled=True, rounded=True)
+plt.show()
